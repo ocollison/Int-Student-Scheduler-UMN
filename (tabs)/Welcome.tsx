@@ -31,7 +31,8 @@ import {
           </Text>
         </View>
         <TouchableOpacity
-           onPress={() => navigation.navigate("Signup")}
+          // onPress={() => navigation.navigate("Signup")}
+          onPress={() => navigation.navigate("Home")}
             >
           <View style={styles.button}>
             <Text style={styles.buttonText}>Get Started</Text>

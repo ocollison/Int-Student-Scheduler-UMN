@@ -58,58 +58,56 @@ export default function TabOneScreen({navigation}: {navigation: any}) {
            <Text style={styles.title}>
             {form.firstName ? (
               <Text style={{ color: '#A61D3F' }}>
-                Welcome 
+                Welcome `${form.firstName}` `${form.lastName}`
               </Text>
             ) : (
               <Text style={{ color: '#A61D3F' }}>Welcome</Text>
             )}
           </Text>
-
         </View>
-        <View style={styles.form}>
-          <View style={styles.input}>
-            <Text style={styles.inputLabel}>Username</Text>
-
-            <TextInput
-              autoCapitalize="none"
-              autoCorrect={false}
-              placeholder="Your username here"
-              placeholderTextColor="#6b7280"
-              style={styles.inputControl}
-            />
-          </View>
-
-          <View style={styles.input}>
-            <Text style={styles.inputLabel}>Password</Text>
-
-            <TextInput
-              autoCorrect={false}
-              secureTextEntry={true}
-              placeholder="Your passsword here"
-              placeholderTextColor="#6b7280"
-              style={styles.inputControl}
-            />
-          </View>
-          <View style={styles.formAction}>
+        <View style={styles.formAction}>
             <TouchableOpacity
-            onPress={() => navigation.navigate("Signup")}
+           // onPress={() => navigation.navigate("Signup")}
 >
 
               <View style={styles.btn}>
-                <Text style={styles.btnText}>Sign in</Text>
+                <Text style={styles.btnText}>Import From Mail</Text>
               </View>
             </TouchableOpacity>
           </View>
 
-          <TouchableOpacity
+          <View style={styles.formAction}>
+            <TouchableOpacity
+           // onPress={() => navigation.navigate("Signup")}
+>
 
-            style={{ marginTop: 'auto' }}>
-            <Text style={styles.formFooter}>
-              Don't have an account?{' '}
-              <Text style={{ textDecorationLine: 'underline' }}>Sign up</Text>
-            </Text>
-          </TouchableOpacity>
-        </View>
+              <View style={styles.btn}>
+                <Text style={styles.btnText}>Import From Canvas</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.formAction}>
+            <TouchableOpacity
+           // onPress={() => navigation.navigate("Signup")}
+>
+
+              <View style={styles.btn}>
+                <Text style={styles.btnText}>Add Event</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.formAction}>
+            <TouchableOpacity
+           // onPress={() => navigation.navigate("Signup")}
+>
+
+              <View style={styles.btn}>
+                <Text style={styles.btnText}>Export Calendar</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
       </View>
     </SafeAreaView>
   );

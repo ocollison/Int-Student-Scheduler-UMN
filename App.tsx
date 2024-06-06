@@ -9,8 +9,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 //Screens
 import Home from './(tabs)/Home'
 import Calendar from './(tabs)/Calendar'
+import OtherCalendar from './(tabs)/OtherCalendar'
 import Welcome from './(tabs)/Welcome'
 import Signup from './(tabs)/Signup'
+import Landing from './(tabs)/LandingPage'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const Tab = createBottomTabNavigator()
 const Stack = createStackNavigator()
@@ -32,7 +34,17 @@ const getName = async () => {
   }
 }
 
+const removeFirstName = async () => {
+  try {
+    await AsyncStorage.removeItem('@firstName');
+    console.log('First name removed from storage!');
+  } catch (e) {
+    console.error('Failed to remove the first name from storage.', e);
+  }
+};
+
 export default function LandingPage() {
+  //Remove first name so its always go the welcome page
   const [form, setForm] = useState({
     firstName: '',
   });
@@ -49,19 +61,12 @@ export default function LandingPage() {
 
   return (
     <NavigationContainer>
-{form.firstName ? (
     <Stack.Navigator>
-      <Stack.Screen name="Welcome" component={Welcome} options={{headerShown: false}} />
+      <Stack.Screen name="Welcome" component={Welcome}  />
       <Stack.Screen name="Signup" component={Signup} options={{headerShown: false}} />
-      <Stack.Screen name="HomeTabs" component={HomeTabs}  />  
+      <Stack.Screen name="Home" component={Home} options={{headerShown: false}} />
+      <Stack.Screen name="HomeTabs" component={HomeTabs} options={{headerShown: false}}  />  
     </Stack.Navigator>
-            ) : (
-    <Stack.Navigator>
-	<Stack.Screen name="HomeTabs" component={HomeTabs}  /> 
-      <Stack.Screen name="Welcome" component={Welcome} options={{headerShown: false}} />
-      <Stack.Screen name="Signup" component={Signup} options={{headerShown: false}} /> 
-    </Stack.Navigator>
-            )}
     </NavigationContainer>
   );
 };
@@ -85,8 +90,8 @@ function HomeTabs() {
         },
       })}>
             <Tab.Screen 
-            name='Home'
-            component={Home}
+            name='Landing'
+            component={Landing}
             options={{
               tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
             }}
@@ -98,10 +103,19 @@ function HomeTabs() {
               tabBarIcon: ({ color }) => <TabBarIcon name="calendar" color={color} />,
             }}
             />
+            <Tab.Screen 
+            name='OtherCalendar'
+            component={OtherCalendar}
+            options={{
+              tabBarIcon: ({ color }) => <TabBarIcon name="calendar-o" color={color} />,
+            }}
+            />
         </Tab.Navigator>
     //</NavigationContainer>
   );
 }
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
