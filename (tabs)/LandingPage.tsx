@@ -58,7 +58,7 @@ export default function TabOneScreen({navigation}: {navigation: any}) {
            <Text style={styles.title}>
             {form.firstName ? (
               <Text style={{ color: '#A61D3F' }}>
-                Welcome `${form.firstName}` `${form.lastName}`
+                Welcome {form.firstName} {form.lastName}
               </Text>
             ) : (
               <Text style={{ color: '#A61D3F' }}>Welcome</Text>
